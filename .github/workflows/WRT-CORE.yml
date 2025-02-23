@@ -201,6 +201,20 @@ jobs:
           exclude: "node_modules|dist|.git|.husky"
           path: ./wrt/bin/
 
+      - name: print files
+        run: |
+          cd ./wrt/
+          
+          echo 'find ./bin/targets/ -iregex ".*\(buildinfo\|json\|manifest\|sha256sums\|packages\)$"'
+          find ./bin/targets/ -iregex ".*\(buildinfo\|json\|manifest\|sha256sums\|packages\)$"
+          
+          echo ""
+          echo "=========="
+          echo ""
+
+          echo 'find ./bin/targets/ -type f -iname "*$WRT_TARGET*"'
+          find ./bin/targets/ -type f -iname "*$WRT_TARGET*"
+
       - name: Package Firmware
         run: |
           cd ./wrt/ && mkdir ./upload/
